@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1066352230639",
+    "project_id": "fir-setup-console",
+    "storage_bucket": "fir-setup-console.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1066352230639:android:f343edafab2fdeb8a09b1a",
+        "android_client_info": {
+          "package_name": "com.example.firebase_setup_console"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3sxhmt_izeLwbutTPEF5jw2zeFtAACYo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
