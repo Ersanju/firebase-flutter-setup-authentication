@@ -1,3 +1,4 @@
+import 'package:firebase_setup_console/authentication/opt_verification_page.dart';
 import 'package:flutter/material.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 
@@ -57,7 +58,7 @@ class _SignupUserState extends State<SignupUser> {
             ),
             const SizedBox(height: 50),
             Text(
-              'Welcome To FNP!',
+              'Welcome To Joy-a-More!',
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
             Text(
@@ -124,9 +125,11 @@ class _SignupUserState extends State<SignupUser> {
                         ),
                       ),
                       onPressed: () {
-                        // Handle submission
+                        Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => OtpVerificationPage()),
+                        );
                       },
-                      child: Text("Start Gifting", style: TextStyle(fontSize: 16)),
+                      child: Text("Sign Up", style: TextStyle(fontSize: 16)),
                     ),
                   ),
                   SizedBox(height: 20),
@@ -154,7 +157,7 @@ class _SignupUserState extends State<SignupUser> {
                   ),
                   SizedBox(height: 20),
                   Text(
-                    'By continuing you agree to FNP’s\nTerms & Conditions & Privacy Policy',
+                    'By continuing you agree to Joy-a-More’s\nTerms & Conditions & Privacy Policy',
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 12, color: Colors.grey),
                   ),

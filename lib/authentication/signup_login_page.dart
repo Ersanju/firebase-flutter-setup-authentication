@@ -1,3 +1,4 @@
+import 'package:firebase_setup_console/authentication/signup_user.dart';
 import 'package:flutter/material.dart';
 
 class SignupLoginPage extends StatelessWidget {
@@ -51,7 +52,7 @@ class SignupLoginPage extends StatelessWidget {
             const SizedBox(height: 50),
 
             const Text(
-              "Sign Up / Login to FNP!",
+              "Sign Up / Login to Joy-a-More!",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 4),
@@ -86,7 +87,10 @@ class SignupLoginPage extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF88803D),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context, 
+                    MaterialPageRoute(builder: (context) => SignupUser()),);
+                  },
                   child: const Text("Continue"),
                 ),
               ),
@@ -125,7 +129,7 @@ class SignupLoginPage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Text.rich(
                 TextSpan(
-                  text: 'By continuing, you agree to FNP’s\n',
+                  text: 'By continuing, you agree to Joy-a-More’s\n',
                   style: TextStyle(fontSize: 12, color: Colors.black54),
                   children: [
                     TextSpan(
