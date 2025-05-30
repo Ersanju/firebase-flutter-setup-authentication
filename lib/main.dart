@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_setup_console/authentication/opt_verification_page.dart';
 import 'package:firebase_setup_console/authentication/signup_login_page.dart';
+import 'package:firebase_setup_console/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'authentication/signup_user.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: SignupLoginPage()
+      home: SplashScreen()
     );
   }
 }
