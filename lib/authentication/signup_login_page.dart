@@ -12,6 +12,7 @@ class SignupLoginPage extends StatelessWidget {
           children: [
             // Banner with logo overlay
             Stack(
+              clipBehavior: Clip.none,
               alignment: Alignment.bottomCenter,
               children: [
                 // Banner Image
@@ -24,16 +25,22 @@ class SignupLoginPage extends StatelessWidget {
 
                 // Circular FNP Logo
                 Positioned(
-                  bottom: -30,
-                  child: CircleAvatar(
-                    radius: 40,
-                    backgroundColor: Colors.white,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Image.asset(
-                        'assets/images/joy_logo.png',
-                        width: 50,
-                        height: 50,
+                  bottom: -45,
+                  left: MediaQuery.of(context).size.width / 2 - 45, // center horizontally
+                  child: Material(
+                    elevation: 8,
+                    shape: const CircleBorder(),
+                    shadowColor: Colors.black45,
+                    child: CircleAvatar(
+                      radius: 45,
+                      backgroundColor: Colors.white,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.asset(
+                          'assets/images/joy_logo.png',
+                          width: 50,
+                          height: 50,
+                        ),
                       ),
                     ),
                   ),
