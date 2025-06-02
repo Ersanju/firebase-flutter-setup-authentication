@@ -1,0 +1,16 @@
+final List<Map<String, String>> categories = [
+  {"label": "Cakes", "icon": "assets/categories/cakes.png"},
+  {"label": "Birthday", "icon": "assets/categories/birthday.png"},
+  {"label": "Anniversary", "icon": "assets/categories/anniversary.png"},
+  {"label": "FNP Luxe", "icon": "assets/categories/luxe.png"},
+  {"label": "Flowers", "icon": "assets/categories/flowers.png"},
+  {"label": "Cakes", "icon": "assets/categories/cakes.png"},
+  {"label": "Wedding", "icon": "assets/categories/wedding.png"},
+  {"label": "Handmade", "icon": "assets/categories/handmade.png"},
+  {"label": "Plants", "icon": "assets/categories/plants.png"},
+  {"label": "Combos", "icon": "assets/categories/combos.png"},
+  {"label": "Gifts", "icon": "assets/categories/gifts.png"},
+  {"label": "Chocolates", "icon": "assets/categories/chocolates.png"},
+  {"label": "Personalised", "icon": "assets/categories/personalised.png"},
+  {"label": "New Launches", "icon": "assets/categories/new_launches.png"},
+];

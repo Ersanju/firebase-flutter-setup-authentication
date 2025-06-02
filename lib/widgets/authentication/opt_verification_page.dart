@@ -1,3 +1,4 @@
+import 'package:firebase_setup_console/home_page.dart';
 import 'package:flutter/material.dart';
 
 class OtpVerificationPage extends StatefulWidget {
@@ -145,7 +146,8 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
                     backgroundColor: const Color(0xFF7A8E3E),
                     padding: const EdgeInsets.symmetric(vertical: 16)),
                 onPressed: () {
-
+                  Navigator.push(context, 
+                  MaterialPageRoute(builder: (context) => HomePage()));
                 },
                 child: const Text("Confirm OTP",
                     style: TextStyle(color: Colors.white, fontSize: 16)),

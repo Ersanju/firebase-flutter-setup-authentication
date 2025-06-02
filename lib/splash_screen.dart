@@ -1,4 +1,4 @@
-import 'package:firebase_setup_console/authentication/signup_login_page.dart';
+import 'package:firebase_setup_console/widgets/authentication/signup_login_page.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {

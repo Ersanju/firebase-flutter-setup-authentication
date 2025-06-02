@@ -1,4 +1,4 @@
-import 'package:firebase_setup_console/authentication/signup_user.dart';
+import 'package:firebase_setup_console/widgets/authentication/signup_user.dart';
 import 'package:flutter/material.dart';
 
 class SignupLoginPage extends StatelessWidget {
