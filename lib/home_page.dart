@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:firebase_setup_console/data/suggested_product_data.dart';
+import 'package:firebase_setup_console/widgets/account_page/account_page.dart';
 import 'package:firebase_setup_console/widgets/catergory_page/category_page.dart';
 import 'package:firebase_setup_console/widgets/all_gifts_page/all_gifts_page.dart';
 import 'package:firebase_setup_console/widgets/home_page/delivery_location_page.dart';
@@ -107,7 +108,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppBar(),
+      appBar: _currentIndex == 0 ? _buildAppBar() : null,
       body: _pages[_currentIndex],
       bottomNavigationBar: _buildBottomNavigationBar(),
     );
@@ -290,6 +291,6 @@ class _HomePageState extends State<HomePage> {
     _buildHomeContent(),
     CategoryPage(),
     AllGiftsPage(),
-    // AccountPage(),
+    AccountPage(),
   ];
 }

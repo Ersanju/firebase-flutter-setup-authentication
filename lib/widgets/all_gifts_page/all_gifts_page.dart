@@ -87,25 +87,6 @@ class _AllGiftsPageState extends State<AllGiftsPage> {
           );
         },
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.green[800],
-        onTap: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.local_shipping), label: 'Same Day'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.card_giftcard), label: 'All Gifts'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.flight_takeoff), label: 'Abroad'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Account'),
-        ],
-      ),
     );
   }
 }

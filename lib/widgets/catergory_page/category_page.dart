@@ -33,364 +33,164 @@ class _CategoryPageState extends State<CategoryPage> {
 
   int selectedIndex = 0;
 
+  List<dynamic> getSelectedList() {
+    switch (selectedIndex) {
+      case 0:
+        return popularProductsList;
+      case 1:
+        return cakesList;
+      case 2:
+        return kidsList;
+      case 3:
+        return giftsList;
+      case 4:
+        return flowersList;
+      case 5:
+        return personalisedList;
+      case 6:
+        return weddingsList;
+      case 7:
+        return festivalsList;
+      case 8:
+        return celebrationsList;
+      case 9:
+        return twoHoursList;
+      default:
+        return [];
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Row(
-        children: [
-          // Left Navigation
-          Container(
-            width: 100,
-            color: const Color(0xFFF6F7F9),
-            child: ListView.builder(
-              itemCount: categories.length,
-              itemBuilder: (context, index) {
-                bool isSelected = selectedIndex == index;
-                return GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      selectedIndex = index;
-                    });
-                  },
-                  child: Container(
-                    color: isSelected ? Colors.white : const Color(0xFFF6F7F9),
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    child: Column(
-                      children: [
-                        Icon(categories[index]['icon'],
-                            color: isSelected ? Colors.purple : Colors.black45),
-                        const SizedBox(height: 4),
-                        Text(
-                          categories[index]['label'].split(' ')[0],
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 12,
-                              color:
-                              isSelected ? Colors.purple : Colors.black87,
-                              fontWeight: isSelected
-                                  ? FontWeight.bold
-                                  : FontWeight.normal),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 1,
+          title: const Text(
+            'All Categories',
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
             ),
           ),
-
-          // Right Grid Content
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(12),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if (selectedIndex == 0) ...[
-                    const Text("All Popular",
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold)),
-                    const SizedBox(height: 12),
-                    Expanded(
-                      child: GridView.count(
-                        crossAxisCount: 3,
-                        mainAxisSpacing: 12,
-                        crossAxisSpacing: 12,
-                        childAspectRatio: 0.75,
-                        children: popularProductsList
-                            .map((product) => Column(
-                          children: [
-                            Image.asset(product.imagePath,
-                                width: 70, height: 70),
-                            const SizedBox(height: 6),
-                            Text(
-                              product.title,
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(fontSize: 12),
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ],
-                        ))
-                            .toList(),
+          centerTitle: true,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.black),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ),
+        body: Row(
+          children: [
+            // Left Navigation
+            Container(
+              width: 90,
+              color: const Color(0xFFF6F7F9),
+              child: ListView.builder(
+                itemCount: categories.length,
+                itemBuilder: (context, index) {
+                  bool isSelected = selectedIndex == index;
+                  return GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedIndex = index;
+                      });
+                    },
+                    child: Container(
+                      color: isSelected ? Colors.white : const Color(0xFFF6F7F9),
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      child: Column(
+                        children: [
+                          Icon(categories[index]['icon'],
+                              color: isSelected ? Colors.purple : Colors.black45),
+                          const SizedBox(height: 4),
+                          Text(
+                            categories[index]['label'].split(' ')[0],
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 12,
+                                color: isSelected ? Colors.purple : Colors.black87,
+                                fontWeight:
+                                isSelected ? FontWeight.bold : FontWeight.normal),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                  if (selectedIndex == 1) ...[
-                    const Text("Cakes",
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold)),
-                    const SizedBox(height: 12),
-                    Expanded(
-                      child: GridView.count(
-                        crossAxisCount: 3,
-                        mainAxisSpacing: 12,
-                        crossAxisSpacing: 12,
-                        childAspectRatio: 0.75,
-                        children: cakesList
-                            .map((product) => Column(
-                          children: [
-                            Image.asset(product.imagePath,
-                                width: 70, height: 70),
-                            const SizedBox(height: 6),
-                            Text(
-                              product.title,
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(fontSize: 12),
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ],
-                        ))
-                            .toList(),
-                      ),
-                    ),
-                  ],
-                  if (selectedIndex == 2) ...[
-                    const Text("Kids",
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold)),
-                    const SizedBox(height: 12),
-                    Expanded(
-                      child: GridView.count(
-                        crossAxisCount: 3,
-                        mainAxisSpacing: 12,
-                        crossAxisSpacing: 12,
-                        childAspectRatio: 0.75,
-                        children: kidsList
-                            .map((product) => Column(
-                          children: [
-                            Image.asset(product.imagePath,
-                                width: 70, height: 70),
-                            const SizedBox(height: 6),
-                            Text(
-                              product.title,
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(fontSize: 12),
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ],
-                        ))
-                            .toList(),
-                      ),
-                    ),
-                  ],
-                  if (selectedIndex == 3) ...[
-                    const Text("Gifts",
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold)),
-                    const SizedBox(height: 12),
-                    Expanded(
-                      child: GridView.count(
-                        crossAxisCount: 3,
-                        mainAxisSpacing: 12,
-                        crossAxisSpacing: 12,
-                        childAspectRatio: 0.75,
-                        children: giftsList
-                            .map((product) => Column(
-                          children: [
-                            Image.asset(product.imagePath,
-                                width: 70, height: 70),
-                            const SizedBox(height: 6),
-                            Text(
-                              product.title,
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(fontSize: 12),
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ],
-                        ))
-                            .toList(),
-                      ),
-                    ),
-                  ],
-                  if (selectedIndex == 4) ...[
-                    const Text("Flowers",
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold)),
-                    const SizedBox(height: 12),
-                    Expanded(
-                      child: GridView.count(
-                        crossAxisCount: 3,
-                        mainAxisSpacing: 12,
-                        crossAxisSpacing: 12,
-                        childAspectRatio: 0.75,
-                        children: flowersList
-                            .map((product) => Column(
-                          children: [
-                            Image.asset(product.imagePath,
-                                width: 70, height: 70),
-                            const SizedBox(height: 6),
-                            Text(
-                              product.title,
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(fontSize: 12),
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ],
-                        ))
-                            .toList(),
-                      ),
-                    ),
-                  ],
-                  if (selectedIndex == 5) ...[
-                    const Text("Personalised",
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold)),
-                    const SizedBox(height: 12),
-                    Expanded(
-                      child: GridView.count(
-                        crossAxisCount: 3,
-                        mainAxisSpacing: 12,
-                        crossAxisSpacing: 12,
-                        childAspectRatio: 0.75,
-                        children: personalisedList
-                            .map((product) => Column(
-                          children: [
-                            Image.asset(product.imagePath,
-                                width: 70, height: 70),
-                            const SizedBox(height: 6),
-                            Text(
-                              product.title,
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(fontSize: 12),
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ],
-                        ))
-                            .toList(),
-                      ),
-                    ),
-                  ],
-                  if (selectedIndex == 6) ...[
-                    const Text("Weddings",
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold)),
-                    const SizedBox(height: 12),
-                    Expanded(
-                      child: GridView.count(
-                        crossAxisCount: 3,
-                        mainAxisSpacing: 12,
-                        crossAxisSpacing: 12,
-                        childAspectRatio: 0.75,
-                        children: weddingsList
-                            .map((product) => Column(
-                          children: [
-                            Image.asset(product.imagePath,
-                                width: 70, height: 70),
-                            const SizedBox(height: 6),
-                            Text(
-                              product.title,
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(fontSize: 12),
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ],
-                        ))
-                            .toList(),
-                      ),
-                    ),
-                  ],
-                  if (selectedIndex == 7) ...[
-                    const Text("Festivals",
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold)),
-                    const SizedBox(height: 12),
-                    Expanded(
-                      child: GridView.count(
-                        crossAxisCount: 3,
-                        mainAxisSpacing: 12,
-                        crossAxisSpacing: 12,
-                        childAspectRatio: 0.75,
-                        children: festivalsList
-                            .map((product) => Column(
-                          children: [
-                            Image.asset(product.imagePath,
-                                width: 70, height: 70),
-                            const SizedBox(height: 6),
-                            Text(
-                              product.title,
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(fontSize: 12),
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ],
-                        ))
-                            .toList(),
-                      ),
-                    ),
-                  ],
-                  if (selectedIndex == 8) ...[
-                    const Text("Celebrations",
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold)),
-                    const SizedBox(height: 12),
-                    Expanded(
-                      child: GridView.count(
-                        crossAxisCount: 3,
-                        mainAxisSpacing: 12,
-                        crossAxisSpacing: 12,
-                        childAspectRatio: 0.75,
-                        children: celebrationsList
-                            .map((product) => Column(
-                          children: [
-                            Image.asset(product.imagePath,
-                                width: 70, height: 70),
-                            const SizedBox(height: 6),
-                            Text(
-                              product.title,
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(fontSize: 12),
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ],
-                        ))
-                            .toList(),
-                      ),
-                    ),
-                  ],
-                  if (selectedIndex == 9) ...[
-                    const Text("2-Hour delivery",
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold)),
-                    const SizedBox(height: 12),
-                    Expanded(
-                      child: GridView.count(
-                        crossAxisCount: 3,
-                        mainAxisSpacing: 12,
-                        crossAxisSpacing: 12,
-                        childAspectRatio: 0.75,
-                        children: twoHoursList
-                            .map((product) => Column(
-                          children: [
-                            Image.asset(product.imagePath,
-                                width: 70, height: 70),
-                            const SizedBox(height: 6),
-                            Text(
-                              product.title,
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(fontSize: 12),
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ],
-                        ))
-                            .toList(),
-                      ),
-                    ),
-                  ],
-                ],
+                  );
+                },
               ),
             ),
-          ),
-        ],
+
+            // Right Grid Content
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      categories[selectedIndex]["label"],
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Container(
+                      width: 400  ,
+                      height: 2,
+                      color: Colors.purple, // You can match your brand color
+                    ),
+                    const SizedBox(height: 12),
+                    Expanded(
+                      child: GridView.count(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 12,
+                        crossAxisSpacing: 12,
+                        childAspectRatio: 0.85,
+                        physics: const BouncingScrollPhysics(),
+                        children: getSelectedList()
+                            .map(
+                              (product) => Card(
+                            elevation: 3,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  product.imagePath,
+                                  height: 90,
+                                  fit: BoxFit.cover,
+                                ),
+                                const SizedBox(height: 10),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                  child: Text(
+                                    product.title,
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(fontSize: 14),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                            .toList(),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
