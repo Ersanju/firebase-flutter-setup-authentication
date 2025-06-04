@@ -1,3 +1,4 @@
+import 'package:firebase_setup_console/widgets/account_page/reminder_page.dart';
 import 'package:flutter/material.dart';
 
 import 'chat_with_us.dart';
@@ -66,7 +67,7 @@ class AccountPage extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Text("Reminders Screen")),
+                        MaterialPageRoute(builder: (context) => ReminderPage()),
                       );
                     },
                   ),
