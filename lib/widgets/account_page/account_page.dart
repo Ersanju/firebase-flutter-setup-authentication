@@ -1,11 +1,30 @@
+import 'dart:io';
+
 import 'package:firebase_setup_console/widgets/account_page/reminder_page.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'chat_with_us.dart';
 import 'edit_profile_page.dart';
 
-class AccountPage extends StatelessWidget {
+class AccountPage extends StatefulWidget {
   const AccountPage({super.key});
+
+  @override
+  State<AccountPage> createState() => _AccountPageState();
+}
+
+class _AccountPageState extends State<AccountPage> {
+  File? _profileImage;
+
+  Future<void> _pickImage() async {
+    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _profileImage = File(pickedFile.path);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +41,18 @@ class AccountPage extends StatelessWidget {
           children: [
             // Profile Info
             ListTile(
-              leading: const Icon(Icons.account_circle, size: 48),
+              leading: GestureDetector(
+                onTap: _pickImage,
+                child: CircleAvatar(
+                  radius: 24,
+                  backgroundImage:
+                  _profileImage != null ? FileImage(_profileImage!) : null,
+                  child: _profileImage == null
+                      ? Icon(Icons.account_circle, size: 48, color: Colors.grey)
+                      : null,
+                  backgroundColor: Colors.grey.shade200,
+                ),
+              ),
               title: const Text('sanjay kumar',
                   style: TextStyle(fontWeight: FontWeight.bold)),
               subtitle: const Text('ersanjay426@gmail.com'),

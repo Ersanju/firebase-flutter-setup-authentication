@@ -1,4 +1,6 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 void main() => runApp(MaterialApp(home: EditProfilePage()));
 
@@ -12,9 +14,7 @@ class EditProfilePage extends StatelessWidget {
         title: const Text('Edit Profile'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          onPressed: () => Navigator.pop(context),
         ),
         centerTitle: true,
       ),
@@ -38,6 +38,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
   String _gender = 'Male';
   DateTime? _dob;
   DateTime? _anniversary;
+  File? _profileImage;
 
   final _border = OutlineInputBorder(
     borderRadius: BorderRadius.circular(8),
@@ -63,18 +64,28 @@ class _EditProfileFormState extends State<EditProfileForm> {
     }
   }
 
+  Future<void> _pickImage() async {
+    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _profileImage = File(pickedFile.path);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // Profile Picture with edit icon
         Stack(
           alignment: Alignment.bottomRight,
           children: [
             CircleAvatar(
               radius: 50,
               backgroundColor: Colors.grey.shade300,
-              backgroundImage: const AssetImage('assets/profile_placeholder.png'), // Replace with NetworkImage or FileImage as needed
+              backgroundImage: _profileImage != null
+                  ? FileImage(_profileImage!)
+                  : const AssetImage('assets/profile_placeholder.png') as ImageProvider,
             ),
             Positioned(
               bottom: 0,
@@ -84,9 +95,9 @@ class _EditProfileFormState extends State<EditProfileForm> {
                 radius: 16,
                 child: IconButton(
                   icon: const Icon(Icons.camera_alt, size: 16),
-                  onPressed: () {
-                    // Action to change profile picture
-                  },
+                  onPressed: _pickImage,
+                  padding: EdgeInsets.zero,
+                  constraints: const BoxConstraints(),
                 ),
               ),
             ),
@@ -94,7 +105,6 @@ class _EditProfileFormState extends State<EditProfileForm> {
         ),
         const SizedBox(height: 24),
 
-        // Title and Name
         Row(
           children: [
             DropdownButton<String>(
@@ -120,7 +130,6 @@ class _EditProfileFormState extends State<EditProfileForm> {
         ),
         const SizedBox(height: 16),
 
-        // Email
         TextFormField(
           initialValue: 'ersanjay426@gmail.com',
           readOnly: true,
@@ -134,7 +143,6 @@ class _EditProfileFormState extends State<EditProfileForm> {
         ),
         const SizedBox(height: 16),
 
-        // Mobile Number
         Row(
           children: [
             const Text('🇮🇳 +91'),
@@ -154,7 +162,6 @@ class _EditProfileFormState extends State<EditProfileForm> {
         ),
         const SizedBox(height: 16),
 
-        // Gender Dropdown
         DropdownButtonFormField<String>(
           value: _gender,
           items: ['Male', 'Female', 'Other']
@@ -170,7 +177,6 @@ class _EditProfileFormState extends State<EditProfileForm> {
         ),
         const SizedBox(height: 16),
 
-        // DOB
         GestureDetector(
           onTap: () => _pickDate(context, true),
           child: AbsorbPointer(
@@ -193,7 +199,6 @@ class _EditProfileFormState extends State<EditProfileForm> {
         ),
         const SizedBox(height: 16),
 
-        // Anniversary
         GestureDetector(
           onTap: () => _pickDate(context, false),
           child: AbsorbPointer(
@@ -216,7 +221,6 @@ class _EditProfileFormState extends State<EditProfileForm> {
         ),
         const SizedBox(height: 24),
 
-        // Save & Continue Button
         SizedBox(
           width: double.infinity,
           child: ElevatedButton(
@@ -228,12 +232,11 @@ class _EditProfileFormState extends State<EditProfileForm> {
               ),
             ),
             onPressed: () {
-              // Submit action
+              // Save & Continue logic
             },
             child: const Text('Save & Continue'),
           ),
         ),
-
       ],
     );
   }
