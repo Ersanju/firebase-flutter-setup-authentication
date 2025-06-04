@@ -94,22 +94,47 @@ class AccountPage extends StatelessWidget {
               ),
             ),
 
-            const Divider(height: 30),
+            const Divider(height: 30, thickness: 5,),
 
             // List Options
             const _AccountTile(
                 icon: Icons.account_balance_wallet,
                 label: "fnpCash ₹0",
                 trailing: "New"),
+            Divider(
+              thickness: 0.5,
+              indent: 16,
+              endIndent: 16,
+              color: Colors.grey.shade300,
+            ),
             const _AccountTile(
                 icon: Icons.person_outline, label: "Personal Information"),
+            Divider(
+              thickness: 0.5,
+              indent: 16,
+              endIndent: 16,
+              color: Colors.grey.shade300,
+            ),
+
             const _AccountTile(
                 icon: Icons.location_on_outlined, label: "Saved Addresses"),
+            Divider(
+              thickness: 0.5,
+              indent: 16,
+              endIndent: 16,
+              color: Colors.grey.shade300,
+            ),
             const _AccountTile(icon: Icons.help_outline, label: "FAQ's"),
+            Divider(
+              thickness: 0.5,
+              indent: 16,
+              endIndent: 16,
+              color: Colors.grey.shade300,
+            ),
             const _AccountTile(
                 icon: Icons.delete_outline, label: "Delete FNP Account"),
 
-            const SizedBox(height: 20),
+            const Divider(height: 30, thickness: 5,),
 
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
@@ -125,10 +150,64 @@ class AccountPage extends StatelessWidget {
             const _AccountTile(
                 icon: Icons.celebration_outlined,
                 label: "Birthday/ Wedding Decor"),
+            Divider(
+              thickness: 0.5,
+              indent: 16,
+              endIndent: 16,
+              color: Colors.grey.shade300,
+            ),
             const _AccountTile(
                 icon: Icons.work_outline, label: "Corporate Gifts/ Bulk Orders"),
+            Divider(
+              thickness: 0.5,
+              indent: 16,
+              endIndent: 16,
+              color: Colors.grey.shade300,
+            ),
+            const _AccountTile(icon: Icons.home_rounded, label: "Become a Partner"),
+            Divider(height: 30, thickness: 5,),
 
-            const SizedBox(height: 80),
+            const SizedBox(height: 15),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: ElevatedButton.icon(
+                onPressed: () {
+                  // Logout confirmation dialog
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: const Text("Logout"),
+                      content: const Text("Are you sure you want to logout?"),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.pop(context),
+                          child: const Text("Cancel"),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                            // Add your logout logic here
+                          },
+                          child: const Text("Logout"),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.logout, color: Colors.white),
+                label: const Text("Logout"),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFFFF7043), // Deep Orange Accent
+                  foregroundColor: Colors.white,
+                  minimumSize: const Size.fromHeight(48),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 15,)
+
           ],
         ),
       ),
