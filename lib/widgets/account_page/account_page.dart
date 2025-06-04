@@ -1,11 +1,13 @@
 import 'dart:io';
 
 import 'package:firebase_setup_console/widgets/account_page/reminder_page.dart';
+import 'package:firebase_setup_console/widgets/account_page/saved_addresses_page.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'chat_with_us.dart';
 import 'edit_profile_page.dart';
+import 'fyq_page.dart';
 
 class AccountPage extends StatefulWidget {
   const AccountPage({super.key});
@@ -147,15 +149,32 @@ class _AccountPageState extends State<AccountPage> {
               color: Colors.grey.shade300,
             ),
 
-            const _AccountTile(
-                icon: Icons.location_on_outlined, label: "Saved Addresses"),
+            _AccountTile(
+              icon: Icons.location_on_outlined,
+              label: "Saved Addresses",
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SavedAddressesPage()),
+                );
+              },
+            ),
             Divider(
               thickness: 0.5,
               indent: 16,
               endIndent: 16,
               color: Colors.grey.shade300,
             ),
-            const _AccountTile(icon: Icons.help_outline, label: "FAQ's"),
+            _AccountTile(
+              icon: Icons.help_outline,
+              label: "FAQ's",
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const FYQPage()),
+                );
+              },
+            ),
             Divider(
               thickness: 0.5,
               indent: 16,
@@ -277,8 +296,9 @@ class _AccountTile extends StatelessWidget {
   final IconData icon;
   final String label;
   final String? trailing;
+  final VoidCallback? onTap;
 
-  const _AccountTile({required this.icon, required this.label, this.trailing});
+  const _AccountTile({required this.icon, required this.label, this.trailing, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -297,7 +317,7 @@ class _AccountTile extends StatelessWidget {
             style: const TextStyle(color: Colors.white, fontSize: 12)),
       )
           : const Icon(Icons.arrow_forward_ios, size: 16),
-      onTap: () {},
+      onTap: onTap,
     );
   }
 }
