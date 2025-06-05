@@ -1,45 +1,17 @@
 import 'package:firebase_setup_console/data/item_data.dart';
 import 'package:flutter/material.dart';
 
-class ProductPage extends StatelessWidget {
+class WishlistPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Products", style: TextStyle(color: Colors.black)),
+        title: Text("My Wishlist", style: TextStyle(color: Colors.black)),
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: Colors.black),
-        actions: [
-          Icon(Icons.search),
-          SizedBox(width: 12),
-          Icon(Icons.favorite_border),
-          SizedBox(width: 12),
-          Icon(Icons.shopping_cart_outlined),
-          SizedBox(width: 12),
-        ],
       ),
       body: Column(
         children: [
-          Container(
-            color: Color(0xFFF6F6F6),
-            padding: EdgeInsets.all(12),
-            child: Row(
-              children: [
-                Icon(Icons.location_on_outlined),
-                SizedBox(width: 6),
-                Expanded(
-                  child: Text(
-                    "Deliver to 271302, Gonda, Uttar Pradesh",
-                    style: TextStyle(fontSize: 14),
-                  ),
-                ),
-                Text(
-                  "Change",
-                  style: TextStyle(color: Colors.green),
-                )
-              ],
-            ),
-          ),
           Expanded(
             child: GridView.builder(
               padding: const EdgeInsets.all(8),

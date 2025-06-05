@@ -1,9 +1,12 @@
 import 'dart:io';
 
 import 'package:firebase_setup_console/widgets/account_page/become_partner_page.dart';
+import 'package:firebase_setup_console/widgets/account_page/my_order_page.dart';
+import 'package:firebase_setup_console/widgets/account_page/privacy_policy_page.dart';
 import 'package:firebase_setup_console/widgets/account_page/reminder_page.dart';
 import 'package:firebase_setup_console/widgets/account_page/saved_addresses_page.dart';
 import 'package:firebase_setup_console/widgets/account_page/share_feedback_page.dart';
+import 'package:firebase_setup_console/widgets/account_page/wishlist_page.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -100,7 +103,7 @@ class _AccountPageState extends State<AccountPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Text("My Orders Screen"),
+                          builder: (context) => MyOrdersPage(),
                         ),
                       );
                     },
@@ -132,7 +135,7 @@ class _AccountPageState extends State<AccountPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Text("Wishlist Screen"),
+                          builder: (context) => WishlistPage(),
                         ),
                       );
                     },
@@ -304,19 +307,18 @@ class _AccountPageState extends State<AccountPage> {
             const SizedBox(height: 15),
             TextButton(
               onPressed: () {
-                // Navigate or show privacy policy
-                showDialog(
-                  context: context,
-                  builder: (_) => AlertDialog(
-                    title: const Text('Privacy Policy'),
-                    content: const Text('This is your privacy policy...'),
-                    actions: [
-                      TextButton(onPressed: () => Navigator.pop(context), child: const Text("Close"))
-                    ],
-                  ),
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const PrivacyPolicyPage()),
                 );
               },
-              child: const Text("Privacy Policy", style: TextStyle(color: Colors.blue, decoration: TextDecoration.underline,)),
+              child: const Text(
+                "Privacy Policy",
+                style: TextStyle(
+                  color: Colors.blue,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
             ),
             Text(
               'App Version: 5.1.1',
