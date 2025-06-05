@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:firebase_setup_console/data/suggested_product_data.dart';
 import 'package:firebase_setup_console/widgets/account_page/account_page.dart';
+import 'package:firebase_setup_console/widgets/account_page/cart_page.dart';
+import 'package:firebase_setup_console/widgets/account_page/wishlist_page.dart';
 import 'package:firebase_setup_console/widgets/catergory_page/category_page.dart';
 import 'package:firebase_setup_console/widgets/all_gifts_page/all_gifts_page.dart';
 import 'package:firebase_setup_console/widgets/home_page/delivery_location_page.dart';
@@ -116,6 +118,7 @@ class _HomePageState extends State<HomePage> {
 
   PreferredSizeWidget _buildAppBar() {
     return AppBar(
+      automaticallyImplyLeading: false,
       backgroundColor: Colors.white,
       elevation: 0,
       title: Row(
@@ -159,11 +162,25 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      actions: const [
-        Icon(Icons.favorite_border, color: Colors.black),
-        SizedBox(width: 10),
-        Icon(Icons.shopping_cart_outlined, color: Colors.black),
-        SizedBox(width: 10),
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.favorite_border, color: Colors.black),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => WishlistPage()),
+            );
+          },
+        ),
+        IconButton(
+          icon: const Icon(Icons.shopping_cart_outlined, color: Colors.black),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => CartPage()),
+            );
+          },
+        ),
       ],
     );
   }

@@ -146,7 +146,7 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
                     backgroundColor: const Color(0xFF7A8E3E),
                     padding: const EdgeInsets.symmetric(vertical: 16)),
                 onPressed: () {
-                  Navigator.push(context, 
+                  Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (context) => HomePage()));
                 },
                 child: const Text("Confirm OTP",

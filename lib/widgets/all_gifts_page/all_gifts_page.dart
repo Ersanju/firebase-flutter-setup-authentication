@@ -12,7 +12,7 @@ class _AllGiftsPageState extends State<AllGiftsPage> {
   List<Map<String, dynamic>> giftTypes = [
     {
       'title': 'Cakes',
-      'image': 'https://via.placeholder.com/60', // Replace with actual image URL
+      'image': 'assets/categories/cakes.png', // Replace with actual image URL
       'subcategories': [
         'Celebrate Special Occasions',
         'Top Picks',
@@ -23,15 +23,36 @@ class _AllGiftsPageState extends State<AllGiftsPage> {
     },
     {
       'title': 'Flowers',
-      'image': 'https://via.placeholder.com/60',
+      'image': 'assets/categories/flowers.png',
+      'subcategories': [
+        'Celebrate Special Occasions',
+        'Top Picks',
+        'Yummy Treats',
+        'Flavour Choices',
+        'Send Cakes to',
+      ]
     },
     {
       'title': 'Personalised',
-      'image': 'https://via.placeholder.com/60',
+      'image': 'assets/categories/personalised.png',
+      'subcategories': [
+        'Celebrate Special Occasions',
+        'Top Picks',
+        'Yummy Treats',
+        'Flavour Choices',
+        'Send Cakes to',
+      ]
     },
     {
       'title': 'Plants',
-      'image': 'https://via.placeholder.com/60',
+      'image': 'assets/categories/plants.png',
+      'subcategories': [
+        'Celebrate Special Occasions',
+        'Top Picks',
+        'Yummy Treats',
+        'Flavour Choices',
+        'Send Cakes to',
+      ]
     },
   ];
 
@@ -51,7 +72,15 @@ class _AllGiftsPageState extends State<AllGiftsPage> {
           return Card(
             margin: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             child: ExpansionTile(
-              leading: Image.network(gift['image'], width: 50, height: 50),
+              leading: ClipRRect(
+                borderRadius: BorderRadius.circular(25), // half of width/height for circle
+                child: Image.asset(
+                  gift['image'],
+                  width: 50,
+                  height: 50,
+                  fit: BoxFit.cover,
+                ),
+              ),
               title: Text(gift['title']),
               children: gift['subcategories'] != null
                   ? (gift['subcategories'] as List<String>)
@@ -73,7 +102,7 @@ class _AllGiftsPageState extends State<AllGiftsPage> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    padding: EdgeInsets.symmetric(vertical: 12),
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 12),
                   ),
                   child: Align(
                     alignment: Alignment.centerLeft,
