@@ -1,11 +1,14 @@
 import 'dart:io';
 
+import 'package:firebase_setup_console/widgets/account_page/become_partner_page.dart';
 import 'package:firebase_setup_console/widgets/account_page/reminder_page.dart';
 import 'package:firebase_setup_console/widgets/account_page/saved_addresses_page.dart';
+import 'package:firebase_setup_console/widgets/account_page/share_feedback_page.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'chat_with_us.dart';
+import 'decor_info_page.dart';
 import 'edit_profile_page.dart';
 import 'fyq_page.dart';
 
@@ -20,7 +23,9 @@ class _AccountPageState extends State<AccountPage> {
   File? _profileImage;
 
   Future<void> _pickImage() async {
-    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+    final pickedFile = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+    );
     if (pickedFile != null) {
       setState(() {
         _profileImage = File(pickedFile.path);
@@ -47,25 +52,30 @@ class _AccountPageState extends State<AccountPage> {
                 onTap: _pickImage,
                 child: CircleAvatar(
                   radius: 24,
-                  backgroundImage:
-                  _profileImage != null ? FileImage(_profileImage!) : null,
-                  child: _profileImage == null
-                      ? Icon(Icons.account_circle, size: 48, color: Colors.grey)
-                      : null,
                   backgroundColor: Colors.grey.shade200,
+                  backgroundImage:
+                      _profileImage != null ? FileImage(_profileImage!) : null,
+                  child:
+                      _profileImage == null
+                          ? Icon(
+                            Icons.account_circle,
+                            size: 48,
+                            color: Colors.grey,
+                          )
+                          : null,
                 ),
               ),
-              title: const Text('sanjay kumar',
-                  style: TextStyle(fontWeight: FontWeight.bold)),
+              title: const Text(
+                'sanjay kumar',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
               subtitle: const Text('ersanjay426@gmail.com'),
               trailing: IconButton(
                 icon: const Icon(Icons.edit_outlined),
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => EditProfilePage()
-                    ),
+                    MaterialPageRoute(builder: (context) => EditProfilePage()),
                   );
                 },
               ),
@@ -89,7 +99,9 @@ class _AccountPageState extends State<AccountPage> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Text("My Orders Screen")),
+                        MaterialPageRoute(
+                          builder: (context) => Text("My Orders Screen"),
+                        ),
                       );
                     },
                   ),
@@ -119,7 +131,9 @@ class _AccountPageState extends State<AccountPage> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Text("Wishlist Screen")),
+                        MaterialPageRoute(
+                          builder: (context) => Text("Wishlist Screen"),
+                        ),
                       );
                     },
                   ),
@@ -127,21 +141,32 @@ class _AccountPageState extends State<AccountPage> {
               ),
             ),
 
-            const Divider(height: 30, thickness: 5,),
+            const Divider(height: 30, thickness: 5),
 
             // List Options
             const _AccountTile(
-                icon: Icons.account_balance_wallet,
-                label: "fnpCash ₹0",
-                trailing: "New"),
+              icon: Icons.account_balance_wallet,
+              label: "fnpCash ₹0",
+              trailing: "New",
+            ),
             Divider(
               thickness: 0.5,
               indent: 16,
               endIndent: 16,
               color: Colors.grey.shade300,
             ),
-            const _AccountTile(
-                icon: Icons.person_outline, label: "Personal Information"),
+            _AccountTile(
+              icon: Icons.person_outline,
+              label: "Personal Information",
+              onTap: () {
+                Navigator.push(
+                    context,
+                  MaterialPageRoute(
+                      builder: (context) => EditProfilePage()
+                  )
+                );
+              },
+            ),
             Divider(
               thickness: 0.5,
               indent: 16,
@@ -155,7 +180,9 @@ class _AccountPageState extends State<AccountPage> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const SavedAddressesPage()),
+                  MaterialPageRoute(
+                    builder: (context) => const SavedAddressesPage(),
+                  ),
                 );
               },
             ),
@@ -182,42 +209,120 @@ class _AccountPageState extends State<AccountPage> {
               color: Colors.grey.shade300,
             ),
             const _AccountTile(
-                icon: Icons.delete_outline, label: "Delete FNP Account"),
+              icon: Icons.delete_outline,
+              label: "Delete FNP Account",
+            ),
 
-            const Divider(height: 30, thickness: 5,),
+            const Divider(height: 30, thickness: 5),
 
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: Text("Enquiries",
-                    style:
-                    TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                child: Text(
+                  "Enquiries",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
               ),
             ),
             const SizedBox(height: 10),
 
-            const _AccountTile(
-                icon: Icons.celebration_outlined,
-                label: "Birthday/ Wedding Decor"),
+            _AccountTile(
+              icon: Icons.celebration_outlined,
+              label: "Birthday/ Wedding Decor",
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const DecorInfoPage(),
+                  ),
+                );
+              },
+            ),
             Divider(
               thickness: 0.5,
               indent: 16,
               endIndent: 16,
               color: Colors.grey.shade300,
             ),
-            const _AccountTile(
-                icon: Icons.work_outline, label: "Corporate Gifts/ Bulk Orders"),
+            _AccountTile(
+              icon: Icons.work_outline,
+              label: "Corporate Gifts/ Bulk Orders",
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DecorInfoPage(),
+                  ),
+                );
+              },
+            ),
             Divider(
               thickness: 0.5,
               indent: 16,
               endIndent: 16,
               color: Colors.grey.shade300,
             ),
-            const _AccountTile(icon: Icons.home_rounded, label: "Become a Partner"),
-            Divider(height: 30, thickness: 5,),
+            _AccountTile(
+              icon: Icons.home_rounded,
+              label: "Become a Partner",
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BecomePartnerPage(),
+                  ),
+                );
+              },
+            ),
+            Divider(
+              thickness: 0.5,
+              indent: 16,
+              endIndent: 16,
+              color: Colors.grey.shade300,
+            ),
+            _AccountTile(
+              icon: Icons.feedback,
+              label: 'Share app feedback',
+              onTap: () {
+                showModalBottomSheet(
+                  context: context,
+                  backgroundColor: Colors.white,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+                  ),
+                  isScrollControlled: true,
+                  builder: (_) => const FractionallySizedBox(
+                    heightFactor: 0.5,
+                    child: FeedbackForm(), // defined below
+                  ),
+                );
+              },
+            ),
 
+            Divider(height: 30, thickness: 5),
             const SizedBox(height: 15),
+            TextButton(
+              onPressed: () {
+                // Navigate or show privacy policy
+                showDialog(
+                  context: context,
+                  builder: (_) => AlertDialog(
+                    title: const Text('Privacy Policy'),
+                    content: const Text('This is your privacy policy...'),
+                    actions: [
+                      TextButton(onPressed: () => Navigator.pop(context), child: const Text("Close"))
+                    ],
+                  ),
+                );
+              },
+              child: const Text("Privacy Policy", style: TextStyle(color: Colors.blue, decoration: TextDecoration.underline,)),
+            ),
+            Text(
+              'App Version: 5.1.1',
+              style: const TextStyle(color: Colors.grey),
+            ),
+            SizedBox(height: 15),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: ElevatedButton.icon(
@@ -225,29 +330,34 @@ class _AccountPageState extends State<AccountPage> {
                   // Logout confirmation dialog
                   showDialog(
                     context: context,
-                    builder: (context) => AlertDialog(
-                      title: const Text("Logout"),
-                      content: const Text("Are you sure you want to logout?"),
-                      actions: [
-                        TextButton(
-                          onPressed: () => Navigator.pop(context),
-                          child: const Text("Cancel"),
+                    builder:
+                        (context) => AlertDialog(
+                          title: const Text("Logout"),
+                          content: const Text(
+                            "Are you sure you want to logout?",
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () => Navigator.pop(context),
+                              child: const Text("Cancel"),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                                // Add your logout logic here
+                              },
+                              child: const Text("Logout"),
+                            ),
+                          ],
                         ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                            // Add your logout logic here
-                          },
-                          child: const Text("Logout"),
-                        ),
-                      ],
-                    ),
                   );
                 },
                 icon: const Icon(Icons.logout, color: Colors.white),
                 label: const Text("Logout"),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFFFF7043), // Deep Orange Accent
+                  backgroundColor: const Color(
+                    0xFFFF7043,
+                  ), // Deep Orange Accent
                   foregroundColor: Colors.white,
                   minimumSize: const Size.fromHeight(48),
                   shape: RoundedRectangleBorder(
@@ -256,8 +366,7 @@ class _AccountPageState extends State<AccountPage> {
                 ),
               ),
             ),
-            SizedBox(height: 15,)
-
+            SizedBox(height: 15),
           ],
         ),
       ),
@@ -268,14 +377,18 @@ class _AccountPageState extends State<AccountPage> {
 class _AccountButton extends StatelessWidget {
   final IconData icon;
   final String label;
-  final VoidCallback? onPressed;  // Add this
+  final VoidCallback? onPressed; // Add this
 
-  const _AccountButton({required this.icon, required this.label, this.onPressed});
+  const _AccountButton({
+    required this.icon,
+    required this.label,
+    this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
-      onPressed: onPressed,  // Use the passed callback
+      onPressed: onPressed, // Use the passed callback
       icon: Icon(icon, color: Colors.black),
       label: Text(label, style: const TextStyle(color: Colors.black)),
       style: ElevatedButton.styleFrom(
@@ -291,32 +404,40 @@ class _AccountButton extends StatelessWidget {
   }
 }
 
-
 class _AccountTile extends StatelessWidget {
   final IconData icon;
   final String label;
   final String? trailing;
   final VoidCallback? onTap;
 
-  const _AccountTile({required this.icon, required this.label, this.trailing, this.onTap});
+  const _AccountTile({
+    required this.icon,
+    required this.label,
+    this.trailing,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       leading: Icon(icon),
       title: Text(label),
-      trailing: trailing != null
-          ? Container(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-        decoration: BoxDecoration(
-          gradient: const LinearGradient(
-              colors: [Colors.pink, Colors.orange]),
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Text(trailing!,
-            style: const TextStyle(color: Colors.white, fontSize: 12)),
-      )
-          : const Icon(Icons.arrow_forward_ios, size: 16),
+      trailing:
+          trailing != null
+              ? Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [Colors.pink, Colors.orange],
+                  ),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Text(
+                  trailing!,
+                  style: const TextStyle(color: Colors.white, fontSize: 12),
+                ),
+              )
+              : const Icon(Icons.arrow_forward_ios, size: 16),
       onTap: onTap,
     );
   }
